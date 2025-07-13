@@ -2,88 +2,80 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>초대장</title>
+  <title>구도로 통닭 모임 초대장</title>
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f5f0e6;
+      font-family: 'Black Han Sans', sans-serif;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container {
+      background-color: #ffffff;
       text-align: center;
+      color: #000000;
     }
 
-    .main, .invitation {
-      background: white;
-      border-radius: 12px;
-      padding: 40px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      max-width: 400px;
-      margin: auto;
-      display: none;
+    .main-title {
+      font-size: 56px;
+      margin-top: 80px;
     }
 
-    .main {
-      display: block; /* 첫 화면만 보이게 */
-    }
-
-    h1 {
-      color: #b2762d;
-    }
-
-    .btn {
+    .main-image {
+      width: 300px;
       margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #b2762d;
+    }
+
+    .sub-title {
+      font-size: 32px;
+      margin-top: 10px;
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #007BFF;
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 16px;
     }
 
-    .btn:hover {
-      background-color: #99642a;
+    .button:hover {
+      background-color: #0056b3;
     }
 
-    .date {
-      margin-top: 20px;
-      font-weight: bold;
-      color: #b2762d;
+    .content {
+      display: none;
+      margin-top: 50px;
+      font-size: 20px;
+      padding: 0 20px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    
-    <!-- 첫 화면 -->
-    <div class="main" id="main">
-      <h1>✨ 당신을 위한 초대장 ✨</h1>
-      <p>소중한 자리를 준비했어요.</p>
-      <button class="btn" onclick="showInvitation()">확인</button>
-    </div>
+  <h1 class="main-title">구도로 통닭 모임</h1>
 
-    <!-- 초대장 내용 -->
-    <div class="invitation" id="invitation">
-      <h1>🎉 생일 파티에 초대합니다!</h1>
-      <p>맛있는 음식과 즐거운 시간을 함께해요.</p>
-      <div class="date">📅 2025년 8월 5일 오후 6시<br>📍 서울 마포구 XX카페</div>
-      <p style="margin-top: 20px;">꼭 와주세요 💌</p>
-    </div>
+  <!-- 이미지 추가 (같은 폴더에 이미지 파일이 있다고 가정) -->
+  <img src="1DA164F2-F966-44B2-A558-CEDA8B7A8CD3.jpeg" alt="통닭 이미지" class="main-image">
 
+  <h2 class="sub-title">초대합니다</h2>
+
+  <button class="button" onclick="showContent()">확인</button>
+
+  <div class="content" id="inviteContent">
+    <p>소중한 당신을 구도로 통닭 모임에 초대합니다.</p>
+    <p>일시: 2025년 8월 10일 오후 5시</p>
+    <p>장소: 서울 성수동 모처</p>
+    <p>편한 마음으로 오셔서 통닭 한 마리 하고 가세요 :)</p>
   </div>
 
   <script>
-    function showInvitation() {
-      document.getElementById("main").style.display = "none";
-      document.getElementById("invitation").style.display = "block";
+    function showContent() {
+      document.getElementById('inviteContent').style.display = 'block';
     }
   </script>
 
