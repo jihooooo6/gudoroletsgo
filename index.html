@@ -18,6 +18,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      flex-direction: column;
     }
 
     .card {
@@ -29,6 +30,8 @@
       width: 90%;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .main-title {
@@ -79,15 +82,10 @@
       color: #333;
     }
 
-    .extra-image {
-      width: 100%;
-      max-width: 250px;
-      margin: 30px auto 10px;
-    }
-
     .extra-title {
       font-family: sans-serif;
-      font-size: 18px;
+      font-size: 22px;
+      font-weight: bold;
       color: #000;
       margin-top: 10px;
       white-space: pre-line;
@@ -102,30 +100,70 @@
     }
 
     .additional-info {
-      margin-top: 12px;
+      margin-top: 16px;
       font-family: sans-serif;
       font-size: 16px;
       color: #333;
       white-space: pre-line;
     }
 
-    @media (max-width: 400px) {
+    .flame {
+      font-size: 28px;
+      margin: 16px 0 8px;
+    }
+
+    .share-note {
+      font-family: sans-serif;
+      font-size: 15px;
+      margin-top: 12px;
+      color: #222;
+    }
+
+    #videoContainer {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 30px;
+      display: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    #partyVideo {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 420px) {
       .main-title {
-        font-size: 30px;
+        font-size: 28px;
       }
       .sub-title {
-        font-size: 20px;
+        font-size: 18px;
       }
       .sub-description {
         font-size: 14px;
+      }
+      .button {
+        font-size: 15px;
+        padding: 10px 16px;
+      }
+      .extra-title {
+        font-size: 20px;
+      }
+      .mandatory-note, .additional-info {
+        font-size: 14px;
+      }
+      .flame {
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="card" id="cardContainer">
     <h1 class="main-title">구도로 통닭 모임 🍗🍺</h1>
-    <img src="1DA164F2-F966-44B2-A558-CEDA8B7A8CD3.jpeg" alt="통닭 이미지" class="main-image" />
+    <img src="1DA164F2-F966-44B2-A558-CEDA8B7A8CD3.jpeg" alt="통닭 이미지" class="main-image" id="mainImage" />
     <h2 class="sub-title">초대합니다</h2>
     <p class="sub-description">덥고 지친 여름 여러분을 초대합니다.</p>
 
@@ -133,20 +171,14 @@
 
     <!-- 초대장 내용 -->
     <div class="content" id="inviteContent">
-
-      <!-- 소중한~ 편한 마음으로 오셔서 ~ 부분 삭제 -->
-
-      <!-- 새 이미지 -->
-      <img src="1DA164F2-F966-44B2-A558-CEDA8B7A8CD3.jpeg" alt="추가 이미지" class="extra-image" />
-
-      <!-- 문구 -->
       <p class="extra-title">
 🫩 매일 똑같은 하루가 지겨우시죠?
-오늘 하루 퇴근 이후 🎊🍾👯
-광란의 구도로 통닭 파티를 개최 하려 합니다.
+오늘 하루 퇴근 이후 🎊🍾👯  
+<b style="font-size: 22px;">광란의 구도로 통닭 파티를 개최 합니다.</b>
+      </p>
 
-함께 웃고 떠들며 좋은 시간 보내요!
-많이 많이 오세요~ 🍗🥳
+      <p style="font-weight: normal; font-size: 16px; margin-top: 12px;">
+오늘은 집에 갈 수 없는 날, 죽어보는 날, 집에는 못 들어간다고 미리 전화해두세요 🦹🏻‍♂️🤙📞📵
       </p>
 
       <p class="mandatory-note">
@@ -154,35 +186,37 @@
       </p>
 
       <p class="additional-info">
-일시 : 이번주 화요일 7월 15일 퇴근 직후
+일시 : 이번주 화요일 7월 15일 퇴근 직후  
 장소 : 구도로 통닭 구로디지털역점
-
-여러분을 초대합니다.
       </p>
 
-      <!-- 영상 추가 -->
-      <video id="partyVideo" class="extra-image" controls style="display:none;">
-        <source src="party-video.mp4" type="video/mp4" />
-        브라우저가 동영상을 지원하지 않습니다.
-      </video>
+      <div class="flame">🔥</div>
+
+      <p class="share-note">
+여러분이 같이 가고픈 분이 계시다면  
+해당 초대장을 그분께 나눔 해주세요 !!!
+      </p>
     </div>
+  </div>
+
+  <!-- 하단 영상 -->
+  <div id="videoContainer">
+    <video id="partyVideo" autoplay muted playsinline loop>
+      <source src="party-video.mp4" type="video/mp4" />
+      브라우저가 동영상을 지원하지 않습니다.
+    </video>
   </div>
 
   <script>
     function showContent() {
       const content = document.getElementById('inviteContent');
-      const video = document.getElementById('partyVideo');
+      const mainImage = document.getElementById('mainImage');
+      const videoContainer = document.getElementById('videoContainer');
 
-      if (content.style.display === 'none' || content.style.display === '') {
-        content.style.display = 'block';
-        video.style.display = 'block';
-        video.play();
-      } else {
-        content.style.display = 'none';
-        video.pause();
-        video.currentTime = 0;
-        video.style.display = 'none';
-      }
+      content.style.display = 'block';
+      mainImage.style.display = 'none';
+      videoContainer.style.display = 'block';
+      event.target.style.display = 'none';
     }
   </script>
 </body>
